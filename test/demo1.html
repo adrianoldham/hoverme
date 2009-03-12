@@ -13,22 +13,75 @@
 	<script src="../js/hoverme.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../js/helper.js" type="text/javascript" charset="utf-8"></script>
 	
+	<script src="../js/sequence.js" type="text/javascript" charset="utf-8"></script>
+	
 	<style type="text/css" media="screen">
 		a img {
 			border-style: none;
 		}
+	
+        #sequence, #sequence2 {
+            width: 400px;
+	        height: 65px;
+	        position: relative;
+	        border: 1px solid #999;
+	        padding: 20px;
+	        margin:  auto;
+        }
+
+        .container {
+            width: 400px;
+            height: 65px;
+        }
+
+        .container a {
+            margin: 0 10px;
+            display: block;
+            height: 62px;
+        }
+
+		.container a {
+			width: 62px;
+			height: 62px;
+            border: 1px dashed #999;
+		}
+
+        .container a img {
+            background-color: #fff;
+            border-style: none;
+            border: 1px dashed #999;
+            padding: 2px;
+        }
+
+		.container a img {
+			border-style: none;
+		}
+
+        .container a.first {
+            margin-left: 0 !important;
+        }
+
+        .container a.last {
+            margin-right: 0 !important;
+        }
+
+        .container a.focused {
+            border-bottom: 2px solid #999 !important;
+        }
 	</style>
 </head>
 
 <body style="padding: 50px">
 	<h2>Animation</h2>
 	<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+	<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+	<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
 	
 	<h2>No animation</h2>
 	<img class="nofade" src="images/egoff.png" longdesc="images/egon.png" />
 	
 	<h3>Link Examples</h3>
-	<a href="http://www.google.com">
+	<a href="http://www.google.com" >
 		<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
 	</a>
 	<a href="http://www.google.com">
@@ -54,13 +107,33 @@
 	<img class="effect2" src="images/egoff.png" longdesc="images/egon.png" />
 	<img class="effect3" src="images/egoff.png" longdesc="images/egon.png" />
 	<img class="effect4" src="images/egoff.png" longdesc="images/egon.png" />
+	
+	<h3>Sequence Focus Test</h3>
+    <div id="sequence">
+        <div class="container">
+			<a href="http://www.google.com">
+				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+			</a>
+			<a href="http://www.google.com">
+				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+			</a>
+			<a href="http://www.google.com">
+				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+			</a>
+        </div>
+    </div>
 
 	<script type="text/javascript" charset="utf-8">
 		runTest = function() {
-			new HoverMe("img.fade", { 
+			
+            var sequence = new Sequence("sequence", "#sequence a", { autoScroll: true });
+
+			var hoverMe = new HoverMe("img.fade", { 
 				hideOriginal: false,
-				effect: { show: Effect.Appear, hide: Effect.Fade, options: { duration: 0.4, queue: "end" } }
+				effect: { show: Effect.Appear, hide: Effect.Fade, options: { duration: 0.4 } }
 			});
+			
+			sequence.addFocusEvent(hoverMe.update.bind(hoverMe));
 			
 			new HoverMe("img.nofade", { 
 				hideOriginal: true,
@@ -68,19 +141,19 @@
 			});
 			
 			new HoverMe("img.effect1", { 
-				effect: { show: Effect.Grow, hide: Effect.Puff, options: { duration: 0.2, queue: "end" } }
+				effect: { show: Effect.Grow, hide: Effect.Puff, options: { duration: 0.2 } }
 			});
 			
 			new HoverMe("img.effect2", { 
-				effect: { show: Effect.BlindDown, hide: Effect.BlindUp, options: { duration: 0.2, queue: "end" } }
+				effect: { show: Effect.BlindDown, hide: Effect.BlindUp, options: { duration: 0.2 } }
 			});
 			
 			new HoverMe("img.effect3", { 
-				effect: { show: Effect.Appear, hide: Effect.SwitchOff, options: { duration: 0.2, queue: "end" } }
+				effect: { show: Effect.Appear, hide: Effect.SwitchOff, options: { duration: 0.2 } }
 			});
 			
 			new HoverMe("img.effect4", { 
-				effect: { show: Effect.Appear, hide: Effect.DropOut, options: { duration: 0.2, queue: "end" } }
+				effect: { show: Effect.Appear, hide: Effect.DropOut, options: { duration: 0.2 } }
 			});
 		};
 		

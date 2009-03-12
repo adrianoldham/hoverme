@@ -1,5 +1,6 @@
 var HoverMe = Class.create({
     options: {
+        focusedClass: "focused",
 	    hideOriginal: false,                                            // whether to hide the original image or not
 	    disableAnimation: false,                                        // disable of all animation regardless
 	    disableAnimationForIE: true,                                    // disable any animation if in IE6 or 7
@@ -14,6 +15,12 @@ var HoverMe = Class.create({
         this.images = this.images.map(function(image) {
             return new HoverMe.Image(image, this.options);
         }.bind(this));
+    },
+    
+    update: function () {
+        this.images.each(function(image) {
+            image.update();
+        });
     }
 });
 
@@ -26,14 +33,45 @@ HoverMe.Image = Class.create({
         
         this.image = $(image);
         
+        this.effectQueueScope = "scope" + parseInt(Math.random() * 100000);
+        
         this.setupEffect();
         this.setupBrowsers();
         this.setupImage();
         this.setupHoverImage();
+        
+        this.update();
+    },
+    
+    update: function() {
+        var element = this.image;
+        
+        // Check if image itself, or any ancestors is currently focused
+        while (element != null) {
+            if (element.hasClassName && element.hasClassName(this.options.focusedClass)) break;
+            element = $(element.parentNode);
+        }
+        
+        // If element with focused class found
+        if (element) {
+            if (this.hoverImage.style.display == 'none') {
+                this.showHoverImage();    
+            }
+            
+            this.focused = true;  
+        } else {
+            if (this.focused) {
+                this.focused = false;
+                this.hideHoverImage();                
+            }
+        }
     },
     
     setupEffect: function() {
         this.effectOptions = Object.extend({}, this.options.effect.options);
+        this.effectOptions = Object.extend(this.effectOptions, {
+            queue: { position: 'end', scope: this.effectQueueScope }
+        });
     },
     
     setupBrowsers: function() {
@@ -72,8 +110,10 @@ HoverMe.Image = Class.create({
     },
     
     showHoverImage: function(event) { 
+        if (this.focused) return;
+        
         // show only if we move into of the "image" from the outside 
-        if (event.relatedTarget == this.image || event.relatedTarget == this.hoverImage) return;
+        if (event && (event.relatedTarget == this.image || event.relatedTarget == this.hoverImage)) return;
 
         var position = this.image.positionedOffset();
         
@@ -104,8 +144,10 @@ HoverMe.Image = Class.create({
     },
     
     hideHoverImage: function(event) {
+        if (this.focused) return;
+                
         // hide only if we move out of the "image"
-        if (event.relatedTarget == this.image || event.relatedTarget == this.hoverImage) return;
+        if (event && (event.relatedTarget == this.image || event.relatedTarget == this.hoverImage)) return;
         
         // if hide original image is on, then show it before hiding hover image
         if (this.options.hideOriginal) {
