@@ -72,56 +72,58 @@
 </head>
 
 <body style="padding: 50px">
-	<h2>Animation</h2>
-	<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-	<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-	<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-	
-	<h2>No animation</h2>
-	<img class="nofade" src="images/egoff.png" longdesc="images/egon.png" />
-	
-	<h3>Link Examples</h3>
-	<a href="http://www.google.com" >
+	<div style="overflow: scroll; height: 500px; position: relative">
+		<h2>Animation</h2>
 		<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-	</a>
-	<a href="http://www.google.com">
+		<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+		<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+	
+		<h2>No animation</h2>
 		<img class="nofade" src="images/egoff.png" longdesc="images/egon.png" />
-	</a>
 	
-	<div style="border: 1px solid black; padding: 20px">
-		<h2>Inside Other Relative Divs</h2>
-		<a href="http://www.google.com">
+		<h3>Link Examples</h3>
+		<a href="http://www.google.com" >
 			<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
 		</a>
-	</div>
+		<a href="http://www.google.com">
+			<img class="nofade" src="images/egoff.png" longdesc="images/egon.png" />
+		</a>
+	
+		<div style="border: 1px solid black; padding: 20px">
+			<h2>Inside Other Relative Divs</h2>
+			<a href="http://www.google.com">
+				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+			</a>
+		</div>
 
-	<div style="position: absolute; top: 0; right: 0; border: 1px solid black; padding: 20px">
-		<h2>Inside Other Absolute Divs</h2>
-		<a href="http://www.google.com">
-			<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-		</a>
+		<div style="position: absolute; top: 0; right: 0; border: 1px solid black; padding: 20px">
+			<h2>Inside Other Absolute Divs</h2>
+			<a href="http://www.google.com">
+				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+			</a>
+		</div>
+	
+		<h3>Different Effects</h3>
+		<img class="effect1" src="images/egoff.png" longdesc="images/egon.png" />
+		<img class="effect2" src="images/egoff.png" longdesc="images/egon.png" />
+		<img class="effect3" src="images/egoff.png" longdesc="images/egon.png" />
+		<img class="effect4" src="images/egoff.png" longdesc="images/egon.png" />
+	
+		<h3>Sequence Focus Test</h3>
+	    <div id="sequence">
+	        <div class="container">
+				<a href="http://www.google.com">
+					<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+				</a>
+				<a href="http://www.google.com">
+					<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+				</a>
+				<a href="http://www.google.com">
+					<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
+				</a>
+	        </div>
+	    </div>
 	</div>
-	
-	<h3>Different Effects</h3>
-	<img class="effect1" src="images/egoff.png" longdesc="images/egon.png" />
-	<img class="effect2" src="images/egoff.png" longdesc="images/egon.png" />
-	<img class="effect3" src="images/egoff.png" longdesc="images/egon.png" />
-	<img class="effect4" src="images/egoff.png" longdesc="images/egon.png" />
-	
-	<h3>Sequence Focus Test</h3>
-    <div id="sequence">
-        <div class="container">
-			<a href="http://www.google.com">
-				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-			</a>
-			<a href="http://www.google.com">
-				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-			</a>
-			<a href="http://www.google.com">
-				<img class="fade" src="images/egoff.png" longdesc="images/egon.png" />
-			</a>
-        </div>
-    </div>
 
 	<script type="text/javascript" charset="utf-8">
 		runTest = function() {
