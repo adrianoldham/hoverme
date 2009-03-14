@@ -117,12 +117,9 @@ HoverMe.Image = Class.create({
 
         var position = this.image.positionedOffset();
         
-        this.hoverImage.width = this.image.width;
-        this.hoverImage.height = this.image.height;
-        
         this.hoverImage.setStyle({
-            width: this.image.width + "px",
-            height: this.image.height + "px",
+            //width: this.image.width + "px",
+            //height: this.image.height + "px",
             left: position.left + "px",
             top: position.top + "px",
             opacity: 1,
