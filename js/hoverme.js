@@ -3,7 +3,7 @@ var HoverMe = Class.create({
         focusedClass: "focused",
 	    hideOriginal: false,                                            // whether to hide the original image or not
 	    disableAnimation: false,                                        // disable of all animation regardless
-	    disableAnimationForIE: true,                                    // disable any animation if in IE6 or 7
+	    disableAnimationForIE: false,                                    // disable any animation if in IE6 or 7
         effect: { show: Effect.Appear, hide: Effect.Fade, options: {} } // options is the options passed into the Effect constructor
     },
     
@@ -74,10 +74,8 @@ HoverMe.Image = Class.create({
         });
     },
     
-    setupBrowsers: function() {
-        this.disableAnimation = this.options.disableAnimation;
-        
-        // disable animation if it's IE and we want to disable it for IE
+    setupBrowsers: function() {        
+        // disable animation or if it's IE and we want to disable it for IE
         this.disableAnimation = this.options.disableAnimation || 
             ((Prototype.Browser.IE6 || Prototype.Browser.IE7) && this.options.disableAnimationForIE);
     },
