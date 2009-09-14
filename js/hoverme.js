@@ -77,7 +77,7 @@ HoverMe.Image = Class.create({
     setupBrowsers: function() {        
         // disable animation or if it's IE and we want to disable it for IE
         this.disableAnimation = this.options.disableAnimation || 
-            ((Prototype.Browser.IE6 || Prototype.Browser.IE7) && this.options.disableAnimationForIE);
+            ((hasNoAlphaAnimationSupport) && this.options.disableAnimationForIE);
     },
     
     setupImage: function() {
